@@ -1,0 +1,10 @@
+{
+    "title" : "个人主页",
+    "author" : "敖鸥",
+    "description" : "happygh0st",
+    "language" : "zh-hans",
+    "plugins" : [
+        "toggle-chapters",
+        "katex"
+    ]
+}
