@@ -1,0 +1,440 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>part1 · 个人主页</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="敖鸥">
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="环境搭建.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="ch1.html">
+            
+                <a href="ch1.html">
+            
+                    
+                    ch1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="环境搭建.html">
+            
+                <a href="环境搭建.html">
+            
+                    
+                    环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="part1.html">
+            
+                <a href="part1.html">
+            
+                    
+                    part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >part1</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x521B;&#x5EFA;&#x548C;&#x663E;&#x793A;&#x7A97;&#x53E3;">&#x521B;&#x5EFA;&#x548C;&#x663E;&#x793A;&#x7A97;&#x53E3;</h1>
+<pre><code class="lang-cpp">namedWindow() <span class="hljs-comment">// &#x547D;&#x540D;&#x7A97;&#x53E3;</span>
+resizeWindow() <span class="hljs-comment">// &#x8BBE;&#x7F6E;&#x7A97;&#x53E3;&#x5927;&#x5C0F;</span>
+imshow() <span class="hljs-comment">// &#x5C55;&#x793A;&#x56FE;&#x7247;</span>
+destroyAllWindows() <span class="hljs-comment">// &#x91CA;&#x653E;&#x6240;&#x6709;&#x7A97;&#x53E3;</span>
+</code></pre>
+<h1 id="&#x52A0;&#x8F7D;&#x548C;&#x4FDD;&#x5B58;&#x56FE;&#x7247;">&#x52A0;&#x8F7D;&#x548C;&#x4FDD;&#x5B58;&#x56FE;&#x7247;</h1>
+<pre><code class="lang-cpp"><span class="hljs-comment">/*
+&#x8BFB;&#x53D6;&#x56FE;&#x7247;
+@path: &#x56FE;&#x7247;&#x8DEF;&#x5F84; 
+@flags: &#x8BFB;&#x53D6;&#x65B9;&#x5F0F; 
+*/</span>
+imread(path, flags)
+
+<span class="hljs-comment">/*
+&#x4FDD;&#x5B58;&#x56FE;&#x7247;
+@name: image name
+@img -&gt; Mat: image
+*/</span>
+imwrite(name, img)
+</code></pre>
+<h1 id="&#x89C6;&#x9891;&#x91C7;&#x96C6;&#x548C;&#x4FDD;&#x5B58;">&#x89C6;&#x9891;&#x91C7;&#x96C6;&#x548C;&#x4FDD;&#x5B58;</h1>
+<p>&#x4ECE;&#x5F53;&#x524D;&#x8BBE;&#x5907;&#x6444;&#x50CF;&#x5934;&#x8BFB;&#x53D6;</p>
+<pre><code class="lang-cpp">namedWindow(<span class="hljs-string">&quot;video&quot;</span>, WINDOW_NORMAL);
+
+<span class="hljs-comment">// &#x83B7;&#x53D6;&#x89C6;&#x9891;&#x8BBE;&#x5907;</span>
+VideoCapture cap = VideoCapture(<span class="hljs-number">0</span>);
+Mat image;
+<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+
+    <span class="hljs-keyword">bool</span> success = cap.read(image); <span class="hljs-comment">// cap &gt;&gt; image</span>
+
+    imshow(<span class="hljs-string">&quot;video&quot;</span>, image);
+
+    <span class="hljs-keyword">int</span> key = waitKey(<span class="hljs-number">1</span>);
+
+    <span class="hljs-keyword">if</span> (key == (<span class="hljs-keyword">int</span>) (<span class="hljs-string">&apos;q&apos;</span>)) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; key &lt;&lt; <span class="hljs-built_in">endl</span>;
+        <span class="hljs-keyword">break</span>;
+    }
+}
+
+cap.release();
+destroyAllWindows();
+</code></pre>
+<p>&#x4ECE;&#x89C6;&#x9891;&#x4E2D;&#x8BFB;&#x53D6;</p>
+<pre><code class="lang-cpp">namedWindow(<span class="hljs-string">&quot;video1&quot;</span>, WINDOW_AUTOSIZE);
+
+VideoCapture cap;
+cap.open(<span class="hljs-string">R&quot;(D:\github\opencv\video\test.mp4)&quot;</span>);
+<span class="hljs-built_in">cout</span> &lt;&lt; cap.isOpened() &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+<span class="hljs-keyword">double</span> fps = cap.get(CAP_PROP_FPS);
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;fps=&quot;</span> &lt;&lt; fps &lt;&lt; <span class="hljs-built_in">endl</span>;
+Mat image;
+
+<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+    cap &gt;&gt; image;
+    <span class="hljs-keyword">if</span> (image.empty()) {
+        <span class="hljs-keyword">break</span>;
+    }
+    imshow(<span class="hljs-string">&quot;video1&quot;</span>, image);
+    <span class="hljs-keyword">int</span> key = waitKey(<span class="hljs-number">41</span>);
+    <span class="hljs-keyword">if</span> (key == (<span class="hljs-keyword">int</span>) (<span class="hljs-string">&apos;q&apos;</span>)) {
+        <span class="hljs-keyword">break</span>;
+    }
+}
+
+cap.release();
+destroyAllWindows();
+</code></pre>
+<p>&#x89C6;&#x9891;&#x5F55;&#x5236;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># api: class -&gt; VideoWriter</span>
+<span class="hljs-comment"># methods: write() release()</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">save_video</span><span class="hljs-params">(filename, frames, fps, resolution, fourcc=<span class="hljs-string">&apos;mp4v&apos;</span>)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+    &#x4FDD;&#x5B58;&#x89C6;&#x9891;
+    :param filename: &#x6587;&#x4EF6;&#x540D;
+    :param frames: &#x89C6;&#x9891;&#x5E27;
+    :param fps: fps
+    :param resolution: &#x5206;&#x8FA8;&#x7387; 
+    :param fourcc: 
+    :return: 
+    &quot;&quot;&quot;</span>
+    fcc = cv2.VideoWriter_fourcc(*fourcc)
+    vw = cv2.VideoWriter(filename, fcc, fps, resolution)
+
+    <span class="hljs-keyword">for</span> frame <span class="hljs-keyword">in</span> frames:
+        vw.write(frame)
+    vw.release()
+    print(<span class="hljs-string">&quot;success!&quot;</span>)
+</code></pre>
+<p>&#x9F20;&#x6807;&#x63A7;&#x5236;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># setMouseCallback(winname, callback, userdata)</span>
+<span class="hljs-comment"># callback(event, x, y, flags, userdata)</span>
+
+<span class="hljs-keyword">import</span> cv2
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mouse_callback</span><span class="hljs-params">(event, x, y, flags, userdata)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;
+    &#x9F20;&#x6807;&#x56DE;&#x8C03;&#x51FD;&#x6570;
+    :param event: &#x4E8B;&#x4EF6;
+    :param x:
+    :param y:
+    :param flags:
+    :param userdata: 
+    :return:
+    &quot;&quot;&quot;</span>
+    print(event, x, y, flags, userdata)
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    cv2.namedWindow(<span class="hljs-string">&apos;mouse&apos;</span>, cv2.WINDOW_NORMAL)
+    cv2.resizeWindow(<span class="hljs-string">&apos;mouse&apos;</span>, <span class="hljs-number">640</span>, <span class="hljs-number">360</span>)
+
+    cv2.setMouseCallback(<span class="hljs-string">&apos;mouse&apos;</span>, mouse_callback, <span class="hljs-string">&apos;123&apos;</span>)
+    img = np.zeros((<span class="hljs-number">360</span>, <span class="hljs-number">640</span>, <span class="hljs-number">3</span>), dtype=np.uint8)
+    <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+        cv2.imshow(<span class="hljs-string">&apos;mouse&apos;</span>, img)
+        key = cv2.waitKey(<span class="hljs-number">1</span>)
+        <span class="hljs-keyword">if</span> key &amp; <span class="hljs-number">0xFF</span> == ord(<span class="hljs-string">&apos;q&apos;</span>):
+            <span class="hljs-keyword">break</span>
+
+    cv2.destroyAllWindows()
+</code></pre>
+<p>TrackBar&#x63A7;&#x4EF6;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># createTrackbar</span>
+<span class="hljs-comment"># getTrackbarPos</span>
+<span class="hljs-keyword">import</span> cv2
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">callback</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    cv2.namedWindow(<span class="hljs-string">&apos;TrackBar&apos;</span>, cv2.WINDOW_NORMAL)
+    cv2.resizeWindow(<span class="hljs-string">&apos;TrackBar&apos;</span>, <span class="hljs-number">640</span>, <span class="hljs-number">360</span>)
+
+    cv2.createTrackbar(<span class="hljs-string">&apos;R&apos;</span>, <span class="hljs-string">&apos;TrackBar&apos;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, callback)
+    cv2.createTrackbar(<span class="hljs-string">&apos;G&apos;</span>, <span class="hljs-string">&apos;TrackBar&apos;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, callback)
+    cv2.createTrackbar(<span class="hljs-string">&apos;B&apos;</span>, <span class="hljs-string">&apos;TrackBar&apos;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, callback)
+
+    img = np.zeros((<span class="hljs-number">360</span>, <span class="hljs-number">640</span>, <span class="hljs-number">3</span>), dtype=np.uint8)
+    <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+        r = cv2.getTrackbarPos(<span class="hljs-string">&apos;R&apos;</span>, <span class="hljs-string">&apos;TrackBar&apos;</span>)
+        g = cv2.getTrackbarPos(<span class="hljs-string">&apos;G&apos;</span>, <span class="hljs-string">&apos;TrackBar&apos;</span>)
+        b = cv2.getTrackbarPos(<span class="hljs-string">&apos;B&apos;</span>, <span class="hljs-string">&apos;TrackBar&apos;</span>)
+
+        img[:] = [b, g, r]
+        cv2.imshow(<span class="hljs-string">&apos;TrackBar&apos;</span>, img)
+
+        key = cv2.waitKey(<span class="hljs-number">1</span>)
+        <span class="hljs-keyword">if</span> key &amp; <span class="hljs-number">0xFF</span> == ord(<span class="hljs-string">&apos;q&apos;</span>):
+            <span class="hljs-keyword">break</span>
+
+    cv2.destroyAllWindows()
+</code></pre>
+<p>4.1</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="环境搭建.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 环境搭建">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"part1","level":"1.4","depth":1,"previous":{"title":"环境搭建","level":"1.3","depth":1,"path":"环境搭建.md","ref":"环境搭建.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"theme":"default","author":"敖鸥","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"个人主页","language":"zh-hans","gitbook":"*","description":"happygh0st"},"file":{"path":"part1.md","mtime":"2022-07-30T09:17:37.914Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-07-30T09:42:13.319Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
