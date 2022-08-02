@@ -169,4 +169,3 @@ if __name__ == '__main__':
 
     cv2.destroyAllWindows()
 ```
-4.1

@@ -1,0 +1,367 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>part2 · 个人主页</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="敖鸥">
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="part1.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="ch1.html">
+            
+                <a href="ch1.html">
+            
+                    
+                    ch1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="环境搭建.html">
+            
+                <a href="环境搭建.html">
+            
+                    
+                    环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="part1.html">
+            
+                <a href="part1.html">
+            
+                    
+                    part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="part2.html">
+            
+                <a href="part2.html">
+            
+                    
+                    part2
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >part2</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x8272;&#x5F69;&#x7A7A;&#x95F4;">&#x8272;&#x5F69;&#x7A7A;&#x95F4;</h1>
+<p>RGB: &#x4EBA;&#x773C;&#x7684;&#x8272;&#x5F69;&#x7A7A;&#x95F4;</p>
+<p>OpenCV&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;BGR (<a href="https://blog.csdn.net/u013066730/article/details/103893273" target="_blank">HSV</a>, <a href="https://baike.baidu.com/item/HSL/1443144?fr=aladdin" target="_blank">HSL</a>, <a href="https://blog.csdn.net/mzpmzk/article/details/81239532" target="_blank">YUV</a>)</p>
+<h2 id="hsv">HSV</h2>
+<ul>
+<li>Hue : &#x8272;&#x76F8;&#xFF0C;&#x5373;&#x8272;&#x5F69;&#xFF0C;&#x5982;&#x7EA2;&#x8272;&#x3001;&#x84DD;&#x8272;</li>
+<li>Saturation : &#x9971;&#x548C;&#x5EA6;&#xFF0C;&#x989C;&#x8272;&#x7684;&#x7EAF;&#x5EA6;</li>
+<li>VAlue : &#x660E;&#x5EA6;</li>
+</ul>
+<p><img src="image/HSV.jpg" alt="HSV"></p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> cv2
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">callback</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    cv2.namedWindow(<span class="hljs-string">&apos;color&apos;</span>, cv2.WINDOW_NORMAL)
+
+    img = cv2.imread(<span class="hljs-string">&apos;../../../image/test.png&apos;</span>)
+
+    colorspace = [cv2.COLOR_BGR2BGRA,
+                  cv2.COLOR_BGR2RGBA,
+                  cv2.COLOR_BGR2GRAY,
+                  cv2.COLOR_BGR2HSV_FULL,
+                  cv2.COLOR_BGR2YUV,
+                  cv2.COLOR_BGR2HSV
+                  ]
+    cv2.createTrackbar(<span class="hljs-string">&apos;colorBar&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>, <span class="hljs-number">0</span>, len(colorspace), callback)
+
+    <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+        bar = cv2.getTrackbarPos(<span class="hljs-string">&apos;colorBar&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>)
+        <span class="hljs-comment"># &#x989C;&#x8272;&#x7A7A;&#x95F4;&#x8F6C;&#x6362;</span>
+        cvt_img = cv2.cvtColor(img, colorspace[bar])
+        cv2.imshow(<span class="hljs-string">&apos;color&apos;</span>, cvt_img)
+
+        key = cv2.waitKey(<span class="hljs-number">10</span>)
+        <span class="hljs-keyword">if</span> key &amp; <span class="hljs-number">0xFF</span> == ord(<span class="hljs-string">&apos;q&apos;</span>):
+            <span class="hljs-keyword">break</span>
+
+    cv2.destroyAllWindows()
+</code></pre>
+<h1 id="numpy">Numpy</h1>
+<p>&#x8BE6;&#x89C1;: <a href="https://www.runoob.com/numpy/numpy-tutorial.html" target="_blank">https://www.runoob.com/numpy/numpy-tutorial.html</a></p>
+<h1 id="mat">Mat</h1>
+<p><img src="image/Mat.jpg" alt="Mat"></p>
+<h2 id="mat-&#x6D45;&#x62F7;&#x8D1D;">Mat &#x6D45;&#x62F7;&#x8D1D;</h2>
+<pre><code class="lang-cpp">Mat A = imread(file, IMREAD_COLOR);
+<span class="hljs-function">Mat <span class="hljs-title">B</span><span class="hljs-params">(A)</span></span>;
+</code></pre>
+<h2 id="mat-&#x6DF1;&#x62F7;&#x8D1D;">Mat &#x6DF1;&#x62F7;&#x8D1D;</h2>
+<pre><code class="lang-cpp">cv::Mat::clone();
+cv::Mat::copyTo();
+</code></pre>
+<h2 id="&#x901A;&#x9053;&#x7684;&#x5206;&#x79BB;&#x4E0E;&#x5408;&#x5E76;">&#x901A;&#x9053;&#x7684;&#x5206;&#x79BB;&#x4E0E;&#x5408;&#x5E76;</h2>
+<p>api</p>
+<pre><code class="lang-python">split(mat)
+merge((ch1, ch2, ...))
+</code></pre>
+<p>example</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> cv2
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    img = cv2.imread(<span class="hljs-string">r&apos;../../../image/test.png&apos;</span>, cv2.IMREAD_COLOR)
+
+    b, g, r = cv2.split(img)
+    b[<span class="hljs-number">10</span>:<span class="hljs-number">100</span>, <span class="hljs-number">10</span>:<span class="hljs-number">100</span>] = <span class="hljs-number">255</span>
+    g[<span class="hljs-number">10</span>:<span class="hljs-number">100</span>, <span class="hljs-number">10</span>:<span class="hljs-number">100</span>] = <span class="hljs-number">255</span>
+
+    img2 = cv2.merge((b, g, r))
+
+    cv2.imshow(<span class="hljs-string">&apos;img&apos;</span>, img)
+    cv2.imshow(<span class="hljs-string">&apos;b&apos;</span>, b)
+    cv2.imshow(<span class="hljs-string">&apos;g&apos;</span>, g)
+    cv2.imshow(<span class="hljs-string">&apos;r&apos;</span>, r)
+    cv2.imshow(<span class="hljs-string">&apos;img2&apos;</span>, img2)
+    cv2.waitKey(<span class="hljs-number">0</span>)
+</code></pre>
+<p>5-1</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="part1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: part1">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"part2","level":"1.5","depth":1,"previous":{"title":"part1","level":"1.4","depth":1,"path":"part1.md","ref":"part1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"toggle-chapters":{},"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"敖鸥","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"个人主页","language":"zh-hans","gitbook":"*","description":"happygh0st"},"file":{"path":"part2.md","mtime":"2022-08-02T08:27:02.561Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-08-02T08:28:53.972Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
