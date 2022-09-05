@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>part2 · 个人主页</title>
+        <title>part8 · 个人主页</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -65,10 +65,8 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="part3.html" />
     
-    
-    <link rel="prev" href="part1.html" />
+    <link rel="prev" href="part7.html" />
     
 
     </head>
@@ -149,7 +147,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.5" data-path="part2.html">
+        <li class="chapter " data-level="1.5" data-path="part2.html">
             
                 <a href="part2.html">
             
@@ -227,7 +225,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11" data-path="part8.html">
+        <li class="chapter active" data-level="1.11" data-path="part8.html">
             
                 <a href="part8.html">
             
@@ -270,7 +268,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >part2</a>
+        <a href="." >part8</a>
     </h1>
 </div>
 
@@ -285,85 +283,94 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x8272;&#x5F69;&#x7A7A;&#x95F4;">&#x8272;&#x5F69;&#x7A7A;&#x95F4;</h1>
-<p>RGB: &#x4EBA;&#x773C;&#x7684;&#x8272;&#x5F69;&#x7A7A;&#x95F4;</p>
-<p>OpenCV&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;BGR (<a href="https://blog.csdn.net/u013066730/article/details/103893273" target="_blank">HSV</a>, <a href="https://baike.baidu.com/item/HSL/1443144?fr=aladdin" target="_blank">HSL</a>, <a href="https://blog.csdn.net/mzpmzk/article/details/81239532" target="_blank">YUV</a>)</p>
-<h2 id="hsv">HSV</h2>
-<ul>
-<li>Hue : &#x8272;&#x76F8;&#xFF0C;&#x5373;&#x8272;&#x5F69;&#xFF0C;&#x5982;&#x7EA2;&#x8272;&#x3001;&#x84DD;&#x8272;</li>
-<li>Saturation : &#x9971;&#x548C;&#x5EA6;&#xFF0C;&#x989C;&#x8272;&#x7684;&#x7EAF;&#x5EA6;</li>
-<li>VAlue : &#x660E;&#x5EA6;</li>
-</ul>
-<p><img src="image/HSV.jpg" alt="HSV"></p>
-<pre><code class="lang-python"><span class="hljs-keyword">import</span> cv2
+                                <h1 id="&#x8F66;&#x8F86;&#x68C0;&#x6D4B;">&#x8F66;&#x8F86;&#x68C0;&#x6D4B;</h1>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x8F66;&#x8F86;&#x7EDF;&#x8BA1;</span>
+
+<span class="hljs-keyword">import</span> cv2
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
 
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">callback</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-keyword">pass</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">center</span><span class="hljs-params">(x, y, w, h)</span>:</span>
+    x1 = int(w / <span class="hljs-number">2</span>)
+    y1 = int(h / <span class="hljs-number">2</span>)
+    cx = x + x1
+    cy = y + y1
+    <span class="hljs-keyword">return</span> cx, cy
 
 
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
-    cv2.namedWindow(<span class="hljs-string">&apos;color&apos;</span>, cv2.WINDOW_NORMAL)
+cap = cv2.VideoCapture(<span class="hljs-string">r&apos;../../../video/car.mp4&apos;</span>)
+bgsubmog = cv2.createBackgroundSubtractorMOG2()
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (<span class="hljs-number">5</span>, <span class="hljs-number">5</span>))
+min_w = <span class="hljs-number">90</span>
+min_h = <span class="hljs-number">90</span>
+cars = []
+line_high = <span class="hljs-number">600</span>  <span class="hljs-comment"># &#x68C0;&#x6D4B;&#x7EBF;&#x9AD8;&#x5EA6;</span>
+offset = <span class="hljs-number">3</span>  <span class="hljs-comment"># &#x7EBF;&#x7684;&#x504F;&#x79FB;&#x91CF;</span>
+car_num = <span class="hljs-number">0</span>
 
-    img = cv2.imread(<span class="hljs-string">&apos;../../../image/test.png&apos;</span>)
+<span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+    ret, frame = cap.read()
 
-    colorspace = [cv2.COLOR_BGR2BGRA,
-                  cv2.COLOR_BGR2RGBA,
-                  cv2.COLOR_BGR2GRAY,
-                  cv2.COLOR_BGR2HSV_FULL,
-                  cv2.COLOR_BGR2YUV,
-                  cv2.COLOR_BGR2HSV
-                  ]
-    cv2.createTrackbar(<span class="hljs-string">&apos;colorBar&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>, <span class="hljs-number">0</span>, len(colorspace), callback)
+    <span class="hljs-keyword">if</span> ret:
+        <span class="hljs-comment"># &#x7070;&#x5EA6;</span>
+        cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        <span class="hljs-comment"># print(frame.shape)</span>
+        <span class="hljs-comment"># exit()</span>
 
-    <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
-        bar = cv2.getTrackbarPos(<span class="hljs-string">&apos;colorBar&apos;</span>, <span class="hljs-string">&apos;color&apos;</span>)
-        <span class="hljs-comment"># &#x989C;&#x8272;&#x7A7A;&#x95F4;&#x8F6C;&#x6362;</span>
-        cvt_img = cv2.cvtColor(img, colorspace[bar])
-        cv2.imshow(<span class="hljs-string">&apos;color&apos;</span>, cvt_img)
+        <span class="hljs-comment"># &#x53BB;&#x566A;(&#x9AD8;&#x65AF;)</span>
+        blur = cv2.GaussianBlur(frame, (<span class="hljs-number">3</span>, <span class="hljs-number">3</span>), <span class="hljs-number">5</span>)
 
-        key = cv2.waitKey(<span class="hljs-number">10</span>)
-        <span class="hljs-keyword">if</span> key &amp; <span class="hljs-number">0xFF</span> == ord(<span class="hljs-string">&apos;q&apos;</span>):
-            <span class="hljs-keyword">break</span>
+        <span class="hljs-comment"># &#x53BB;&#x80CC;&#x666F;</span>
+        mask = bgsubmog.apply(blur)
 
-    cv2.destroyAllWindows()
+        <span class="hljs-comment"># &#x8150;&#x8680;  &#x53BB;&#x9664;&#x56FE;&#x4E2D;&#x5C0F;&#x6591;&#x5757;</span>
+        erode = cv2.erode(mask, kernel=kernel)
+
+        <span class="hljs-comment"># &#x81A8;&#x80C0;  &#x8FD8;&#x539F;&#x653E;&#x5927;</span>
+        dilate = cv2.dilate(erode, kernel=kernel, iterations=<span class="hljs-number">3</span>)
+
+        <span class="hljs-comment"># &#x95ED;&#x8FD0;&#x7B97;  &#x53BB;&#x6389;&#x7269;&#x4F53;&#x5185;&#x90E8;&#x7684;&#x5C0F;&#x5757;</span>
+        close = cv2.morphologyEx(dilate, cv2.MORPH_CLOSE, kernel=kernel, iterations=<span class="hljs-number">2</span>)
+
+        <span class="hljs-comment"># &#x67E5;&#x627E;&#x8F6E;&#x5ED3;</span>
+        contours, hierarchy = cv2.findContours(close, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+        cv2.line(frame, (<span class="hljs-number">10</span>, line_high), (<span class="hljs-number">1260</span>, line_high), (<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0</span>), <span class="hljs-number">3</span>)
+        <span class="hljs-keyword">for</span> (i, c) <span class="hljs-keyword">in</span> enumerate(contours):
+            (x, y, w, h) = cv2.boundingRect(c)
+            isValid = ((w &gt;= min_w) <span class="hljs-keyword">and</span> (h &gt;= min_h))
+
+            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> isValid:
+                <span class="hljs-keyword">continue</span>
+
+            cv2.rectangle(frame, (x, y), (x + w, y + h), color=(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>), thickness=<span class="hljs-number">2</span>)
+            <span class="hljs-comment"># &#x6709;&#x6548;&#x7684;&#x8F66;</span>
+            cp = center(x, y, w, h)
+            cars.append(cp)
+            cv2.circle(frame, cp, <span class="hljs-number">5</span>, (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>), <span class="hljs-number">-1</span>)
+
+            <span class="hljs-keyword">for</span> (x, y) <span class="hljs-keyword">in</span> cars:
+                <span class="hljs-comment"># &#x8981;&#x6709;&#x4E00;&#x6761;&#x7EBF;</span>
+                <span class="hljs-comment"># &#x6709;&#x8303;&#x56F4;</span>
+                <span class="hljs-comment"># &#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x51CF;&#x53BB;</span>
+                <span class="hljs-keyword">if</span> (y &gt; line_high - offset) <span class="hljs-keyword">and</span> (y &lt; line_high + offset):
+                    car_num += <span class="hljs-number">1</span>
+                    cars.remove((x, y))
+                    print(car_num)
+
+        cv2.putText(frame, <span class="hljs-string">&quot;Cars Count:&quot;</span> + str(car_num), (<span class="hljs-number">500</span>, <span class="hljs-number">60</span>), cv2.FONT_HERSHEY_SIMPLEX, <span class="hljs-number">2</span>, (<span class="hljs-number">255</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>), <span class="hljs-number">5</span>)
+        cv2.imshow(<span class="hljs-string">&apos;video&apos;</span>, frame)
+        <span class="hljs-comment"># cv2.imshow(&apos;erode&apos;, close)</span>
+
+    key = cv2.waitKey(<span class="hljs-number">1</span>)
+
+    <span class="hljs-keyword">if</span> key == <span class="hljs-number">27</span>:
+        <span class="hljs-keyword">break</span>
+
+cap.release()
+cv2.destroyAllWindows()
 </code></pre>
-<h1 id="numpy">Numpy</h1>
-<p>&#x8BE6;&#x89C1;: <a href="https://www.runoob.com/numpy/numpy-tutorial.html" target="_blank">https://www.runoob.com/numpy/numpy-tutorial.html</a></p>
-<h1 id="mat">Mat</h1>
-<p><img src="image/Mat.jpg" alt="Mat"></p>
-<h2 id="mat-&#x6D45;&#x62F7;&#x8D1D;">Mat &#x6D45;&#x62F7;&#x8D1D;</h2>
-<pre><code class="lang-cpp">Mat A = imread(file, IMREAD_COLOR);
-<span class="hljs-function">Mat <span class="hljs-title">B</span><span class="hljs-params">(A)</span></span>;
-</code></pre>
-<h2 id="mat-&#x6DF1;&#x62F7;&#x8D1D;">Mat &#x6DF1;&#x62F7;&#x8D1D;</h2>
-<pre><code class="lang-cpp">cv::Mat::clone();
-cv::Mat::copyTo();
-</code></pre>
-<h2 id="&#x901A;&#x9053;&#x7684;&#x5206;&#x79BB;&#x4E0E;&#x5408;&#x5E76;">&#x901A;&#x9053;&#x7684;&#x5206;&#x79BB;&#x4E0E;&#x5408;&#x5E76;</h2>
-<p>api</p>
-<pre><code class="lang-python">split(mat)
-merge((ch1, ch2, ...))
-</code></pre>
-<p>example</p>
-<pre><code class="lang-python"><span class="hljs-keyword">import</span> cv2
-
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
-    img = cv2.imread(<span class="hljs-string">r&apos;../../../image/test.png&apos;</span>, cv2.IMREAD_COLOR)
-
-    b, g, r = cv2.split(img)
-    b[<span class="hljs-number">10</span>:<span class="hljs-number">100</span>, <span class="hljs-number">10</span>:<span class="hljs-number">100</span>] = <span class="hljs-number">255</span>
-    g[<span class="hljs-number">10</span>:<span class="hljs-number">100</span>, <span class="hljs-number">10</span>:<span class="hljs-number">100</span>] = <span class="hljs-number">255</span>
-
-    img2 = cv2.merge((b, g, r))
-
-    cv2.imshow(<span class="hljs-string">&apos;img&apos;</span>, img)
-    cv2.imshow(<span class="hljs-string">&apos;b&apos;</span>, b)
-    cv2.imshow(<span class="hljs-string">&apos;g&apos;</span>, g)
-    cv2.imshow(<span class="hljs-string">&apos;r&apos;</span>, r)
-    cv2.imshow(<span class="hljs-string">&apos;img2&apos;</span>, img2)
-    cv2.waitKey(<span class="hljs-number">0</span>)
-</code></pre>
+<p>p85</p>
 
                                 
                                 </section>
@@ -391,14 +398,10 @@ merge((ch1, ch2, ...))
 
             
                 
-                <a href="part1.html" class="navigation navigation-prev " aria-label="Previous page: part1">
+                <a href="part7.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: part7">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="part3.html" class="navigation navigation-next " aria-label="Next page: part3">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -407,7 +410,7 @@ merge((ch1, ch2, ...))
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"part2","level":"1.5","depth":1,"next":{"title":"part3","level":"1.6","depth":1,"path":"part3.md","ref":"part3.md","articles":[]},"previous":{"title":"part1","level":"1.4","depth":1,"path":"part1.md","ref":"part1.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"toggle-chapters":{},"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"敖鸥","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"个人主页","language":"zh-hans","gitbook":"*","description":"happygh0st"},"file":{"path":"part2.md","mtime":"2022-09-05T08:13:09.002Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-09-05T08:19:54.122Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"part8","level":"1.11","depth":1,"previous":{"title":"part7","level":"1.10","depth":1,"path":"part7.md","ref":"part7.md","articles":[]},"dir":"ltr"},"config":{"plugins":["toggle-chapters","katex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"toggle-chapters":{},"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"敖鸥","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"个人主页","language":"zh-hans","gitbook":"*","description":"happygh0st"},"file":{"path":"part8.md","mtime":"2022-09-05T08:08:26.570Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-09-05T08:19:54.122Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
